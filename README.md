@@ -1,1 +1,4 @@
 # shotgun_kegg_plot
+
+## test file
+YNYK/sixhop/sixhosp_nc_scd1_amci_ad_shjw_ad_version2/AD_article_Ge/metagenomics/functional_differential_STAMP_20221128/data/aging_AD/aging_AD_merged_382samples_kegg_pathway_cpm.txt
