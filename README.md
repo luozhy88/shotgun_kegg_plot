@@ -1,5 +1,6 @@
 # shotgun_kegg_plot
-
+## map name
+https://github.com/biobakery/humann/tree/e3b05c5e06220c991cb7f7578315ca495492224d/humann/data/misc
 ## test file
 YNYK/sixhop/sixhosp_nc_scd1_amci_ad_shjw_ad_version2/AD_article_Ge/metagenomics/functional_differential_STAMP_20221128/data/aging_AD/aging_AD_merged_382samples_kegg_pathway_cpm.txt  
 YNYK/sixhop/sixhosp_nc_scd1_amci_ad_shjw_ad_version2/AD_article_Ge/metagenomics/functional_differential_STAMP_20221128/data/aging_AD/aging_AD_merged_456samples_metat.csv
