@@ -41,7 +41,7 @@ pathway_pdf=function(meta_info=meta_info,pathway_df=pathway_df,meta_col=meta_col
   ##
   table(DF$Group)
   
-  
+  DF$Group <- as.character(DF$Group)
   ### create all combinations
   pair <- CombPairs(unique(DF$Group))
   
