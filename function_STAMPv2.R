@@ -5,9 +5,9 @@ library(purrr)
 library(ggplot2)
 library(patchwork)
 
-# function 33site
+# function
 
-pathway_pdf=function(meta_info=meta_info,pathway_df=pathway_df,meta_col=meta_col,out.name=out.name,height=height){
+pathway_pdf=function(meta_info=meta_info,pathway_df=pathway_df,meta_col=meta_col,out.name=out.name,height=height,padj=padj){
   
   ####args
   # meta_info<-meta.348 # the column of meta_info  is c("sampleID", "Group", "Gender")
@@ -64,7 +64,7 @@ pathway_pdf=function(meta_info=meta_info,pathway_df=pathway_df,meta_col=meta_col
     diff <- left_join(diff.model, diff.real)
     write.csv(diff,glue::glue("output/", out.name, comparison, "_wilcox.csv"))
     #    diff.sig <- subset(diff, p.value < 0.01)
-    diff.sig <- subset(diff, p.adj < 0.05)
+    diff.sig <- subset(diff, p.adj <= padj)
     diff.sig$col <- ifelse(diff.sig$meandiff > 0, "01plus", "02minus")
     
     
@@ -136,9 +136,9 @@ pathway_pdf=function(meta_info=meta_info,pathway_df=pathway_df,meta_col=meta_col
     ##
     dir.create("output",recursive = T)
     # height=5.5
-    ggsave(filename = glue::glue("output/", out.name, comparison, "_metagenomics_smallSize.pdf"), width = 12, height = height)
-    ggsave(filename = glue::glue("output/", out.name, comparison, "_metagenomics_mediumSize.pdf"), width = 12.5, height = height+2)
-    ggsave(filename = glue::glue("output/", out.name, comparison, "_metagenomics_bigSize.pdf"), width = 12.5, height = height+3)
+    ggsave(filename = glue::glue("output/", out.name, comparison,padj, "_metagenomics_smallSize.pdf"), width = 12, height = height)
+    ggsave(filename = glue::glue("output/", out.name, comparison,padj, "_metagenomics_mediumSize.pdf"), width = 12.5, height = height+2)
+    ggsave(filename = glue::glue("output/", out.name, comparison,padj, "_metagenomics_bigSize.pdf"), width = 12.5, height = height+3)
     
     #  }
   }
@@ -168,8 +168,9 @@ kegg.table.df <- cbind(name_id,selected_cols)
 identical(sort(colnames(kegg.table.df)[-1]), sort(rownames(metadata)))
 colnames(metadata)<-c("sampleID", "Group")
 
-pathway_pdf(meta_info=metadata,pathway_df=kegg.table.df,meta_col=c("sampleID", "Group"),out.name= glue::glue("Product_"),height = 5.5)
+pathway_pdf(meta_info=metadata,pathway_df=kegg.table.df,meta_col=c("sampleID", "Group"),out.name= glue::glue("Product_"),height = 5.5,padj=0.05)
 
+pathway_pdf(meta_info=metadata,pathway_df=kegg.table.df,meta_col=c("sampleID", "Group"),out.name= glue::glue("Product_"),height = 5.5,padj=0.01)
 
 
 
