@@ -41,10 +41,12 @@ pathway_pdf=function(meta_info=meta_info,pathway_df=pathway_df,meta_col=meta_col
     ## or ignore the subgroups
     DF.tss <- DF2
     # 计算每列的方差
-    DF.tss[,-c(1:2)] <- DF.tss[,-c(1:2)]      %>% 
+    DF.tss_var <- DF.tss     %>% 
       select_if(is.numeric)       %>%
-      # select(where(~var(.x) != 0))
       select(where(~ var(.x) > 1e-12))
+    DF.tss=DF.tss %>% select(1:2, colnames(DF.tss_var))
+
+    
     # DF.tss <- DF2 %>%janitor::adorn_percentages("row") %>% data.frame()
     DF.tss <- DF.tss[, colMeans(is.na(DF.tss)) <= 0.3]
     DF.tss_features_col =colnames(DF.tss)
