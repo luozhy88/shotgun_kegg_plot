@@ -42,7 +42,7 @@ mydata3 <- data.frame(sample, group, features)
 STAMP<- function(mydata=mydata3,zero_percent=70,p_adj=0.05,p_value=NULL,width=9.0,height=5.5,out.name="output/"){
       
     ######################################### Readme #########################################
-    # 1 and 2 column are sample and group in mydata3
+    # 1 and 2 column are sample and group in mydata3,the order of features are ranked
     ######################################### Readme #########################################
     dir.create(out.name,recursive = T)
     ### ready for calculation
