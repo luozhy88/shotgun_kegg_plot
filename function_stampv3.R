@@ -88,11 +88,10 @@ STAMP<- function(mydata=mydata3,zero_percent=70,p_adj=0.05,p_value=NULL,width=9.
       #    
       if(is.null(p_value) ){
         diff.sig <- dplyr::filter(diff, p.adj <= p_adj)
-        # diff.sig <- subset(diff, p.adj < p.adj)
-        sign_stat=glue::glue("p.adj",p.adj)
+        sign_stat=glue::glue("p.adj",p_adj)
       }else{
         diff.sig <- dplyr::filter(diff, p.value <= p_value)
-        sign_stat=glue::glue("p.value",p.value)
+        sign_stat=glue::glue("p.value",p_value)
       }
       
       diff.sig$col <- ifelse(diff.sig$meandiff > 0, "01plus", "02minus")
